@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '/utils/colors.dart';
 import '/widgets/big_text.dart';
+import '/widgets/small_text.dart';
+import '/widgets/icon_and_text_widget.dart';
 
 class FoodPageBody extends StatefulWidget {
   FoodPageBody({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.redAccent,
+      //color: Colors.redAccent,
       height:320,
       child: PageView.builder(
         controller: pageController,
@@ -31,7 +33,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         Container
     (
        height: 220,
-       margin: EdgeInsets.only(left:5, right:5),
+       margin: EdgeInsets.only(left:10, right:10),
       decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(30),
       color: index.isEven?Color(0xff69c5df):Color(0xFF9294cc),
@@ -46,18 +48,17 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       ),
       Align(
         alignment: Alignment.bottomCenter,
-        child: Container
-      (
-       height: 140,
-       margin: EdgeInsets.only(left:30, right:30, bottom: 15),
-      decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(30),
-      color: Colors.white,),
-        ),
-
-       child: Container(
-        padding: EdgeInsets.only(top: 10, left: 15, right: 15),
-        child: Column(
+        child: Container(
+          height: 120,
+          margin: EdgeInsets.only(left:30, right:30, bottom: 30),
+          decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.white,
+          ),
+        child: Container(
+          padding: EdgeInsets.only(top: 10, left: 15, right: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BigText(text: "Chinese Side"),
             SizedBox(height: 10),
@@ -66,11 +67,36 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 Wrap(
                   children: List.generate(5, (index) => Icon(Icons.star, color: AppColors.mainColor, size: 15,))
                 ),
+                SizedBox(width: 10),
+                SmallText(text: "4.5"),
+                SizedBox(width: 10),
+                SmallText(text: "1297"),
+                SizedBox(width: 10),
+                SmallText(text: "comments"),
               ],
+            ),
+            SizedBox(height: 20,),
+            Row(
+              children: [
+                IconAndTextWidget(icon: Icons.circle_sharp,
+                text: "Normal",
+                iconColor: AppColors.iconColor1,),
+
+                IconAndTextWidget(icon: Icons.location_on,
+                text: "1.7km",
+                iconColor: AppColors.mainColor,),
+
+                IconAndTextWidget(icon: Icons.access_time_rounded,
+                text: "30min",
+                iconColor: AppColors.iconColor2,),
+              ]
             )
           ]
         ),
-      ),
+      ),  
+         ),
+
+        
       
       )
       ],
