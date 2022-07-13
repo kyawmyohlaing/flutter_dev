@@ -88,7 +88,13 @@ flutter:
   #         weight: 700
   #
 assets:
-    - assets/image/burger.png
+    - assets/image
+fonts:
+  - family: Roboto
+    fonts:
+      - asset: assets/font/Roboto-Regular.ttf
+        weight: 400
+
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
