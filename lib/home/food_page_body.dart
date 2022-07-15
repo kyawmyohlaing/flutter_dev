@@ -3,6 +3,7 @@ import '/utils/colors.dart';
 import '/widgets/big_text.dart';
 import '/widgets/small_text.dart';
 import '/widgets/icon_and_text_widget.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 class FoodPageBody extends StatefulWidget {
   FoodPageBody({Key? key}) : super(key: key);
@@ -35,7 +36,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Column(
+      children: [ 
+        Container
+      (
       //color: Colors.redAccent,
       height:320,
       child: PageView.builder(
@@ -45,7 +49,19 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           return _buildPageItem(position);
         }
       ),
-    );
+    ),
+    new DotsIndicator(
+  dotsCount: 5,
+  position: _currPageValue,
+  decorator: DotsDecorator(
+    activeColor: AppColors.mainColor,
+    size: const Size.square(9.0),
+    activeSize: const Size(18.0, 9.0),
+    activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+  ),
+)
+      ],
+      );
   }
   Widget _buildPageItem(int index){
     Matrix4 matrix = new Matrix4.identity();
@@ -104,12 +120,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               offset: Offset(0, 5),
             ),
             BoxShadow(
-              color: color.white,
-              offset: offset(-5,0)
+              color: Colors.white,
+              offset: Offset(-5,0)
             ),
             BoxShadow(
-              color: color.white,
-              offset: offset(5,0)
+              color: Colors.white,
+              offset: Offset(5,0)
             ),
           ]
           ),
@@ -135,6 +151,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ),
             SizedBox(height: 20,),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconAndTextWidget(icon: Icons.circle_sharp,
                 text: "Normal",
