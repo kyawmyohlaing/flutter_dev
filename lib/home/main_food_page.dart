@@ -3,6 +3,7 @@ import '/utils/colors.dart';
 import '/widgets/big_text.dart';
 import '/widgets/small_text.dart';
 import '/home/food_page_body.dart';
+import '/utils/dimensions.dart';
 
 class MainFoodPage extends StatefulWidget {
   MainFoodPage({Key? key}) : super(key: key);
@@ -14,13 +15,14 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
+    print("current height is "+MediaQuery.of(context).size.height.toString());
     return Scaffold(
       body: Column(
         children: [
           Container(
       child: Container(
-        margin: EdgeInsets.only(top:45, bottom: 15),
-        padding: EdgeInsets.only(left: 30, right: 30),
+        margin: EdgeInsets.only(top: Dimensions.height45, bottom: Dimensions.height15),
+        padding: EdgeInsets.only(left: Dimensions.width30, right: Dimensions.width30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -37,11 +39,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
             ),
             Center(
               child: Container(
-                width: 45,
-                height: 45,
-                child: Icon(Icons.search, color: Colors.white),
+                width: Dimensions.height45,
+                height: Dimensions.height45,
+                child: Icon(Icons.search, color: Colors.white, size: Dimensions.iconSize24,),
                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(Dimensions.radius15),
                     color: AppColors.mainColor,
                   ),
               )
