@@ -5,7 +5,7 @@ class Dimensions {
 static double screenHeight = Get.context!.height;
 static double screenWidth = Get.context!.width;
 
- //calculation screensize/page used size , 844/320
+ //calculation height screensize/page used size , 844/320
  //calculation screensize/page used size , 844/220-
  //calculation screensize/page used size , 844/120-
 
@@ -38,6 +38,10 @@ static double radius30 = screenHeight/28.13;
 
 //icon size
 static double iconSize24 = screenHeight/35.17;
+
+//List view size  390/120=3.25
+static double ListViewImgSize = screenWidth/3.25;
+static double ListViewTextContSize = screenWidth/3.9;
 }
 
 
