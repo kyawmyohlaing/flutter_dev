@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '/utils/colors.dart';
-import '/widgets/big_text.dart';
-import '/widgets/small_text.dart';
-import '/widgets/icon_and_text_widget.dart';
+import 'package:flutter_dev/utils/colors.dart';
+import 'package:flutter_dev/widgets/big_text.dart';
+import 'package:flutter_dev/widgets/small_text.dart';
+import 'package:flutter_dev/widgets/icon_and_text_widget.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import '/utils/dimensions.dart';
+import 'package:flutter_dev/utils/dimensions.dart';
+import 'package:flutter_dev/widgets/app_column.dart';
 
 class FoodPageBody extends StatefulWidget {
   FoodPageBody({Key? key}) : super(key: key);
@@ -232,44 +233,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         child: Container(
           padding: EdgeInsets.only(top: Dimensions.height10, left: Dimensions.height15, right: Dimensions.height15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BigText(text: "Burmese Side"),
-            //SizedBox(height: 10),
-            SizedBox(height: Dimensions.height10,),
-            Row(
-              children: [
-                Wrap(
-                  children: List.generate(5, (index) => Icon(Icons.star, color: AppColors.mainColor, size: 15,))
-                ),
-                SizedBox(width: 10),
-                SmallText(text: "4.5"),
-                SizedBox(width: 10),
-                SmallText(text: "1297"),
-                SizedBox(width: 10),
-                SmallText(text: "comments"),
-              ],
-            ),
-            SizedBox(height: Dimensions.height20,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconAndTextWidget(icon: Icons.circle_sharp,
-                text: "Normal",
-                iconColor: AppColors.iconColor1,),
-
-                IconAndTextWidget(icon: Icons.location_on,
-                text: "1.7km",
-                iconColor: AppColors.mainColor,),
-
-                IconAndTextWidget(icon: Icons.access_time_rounded,
-                text: "30min",
-                iconColor: AppColors.iconColor2,),
-              ]
-            )
-          ]
-        ),
+          child: AppColumn(text: "Burmese Side"),
       ),  
          ),
 
