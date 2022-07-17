@@ -72,11 +72,9 @@ class PopularFoodDetail extends StatelessWidget {
                   SizedBox(height: Dimensions.height10,),
                   BigText(text: "Introduce"),
                   SizedBox(height: Dimensions.height10,),
-                  Expanded(child: SingleChildScrollView(child: ExpandableTextWidget
-                        (
-                        text: "These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!they can offer a whole show for the eyes all year roundthey can offer a whole show for the eyes all year roundthey can offer a whole show for the eyes all year roundthey can offer a whole show for the eyes all year round"
-                        ),
-                      ),   
+                  Expanded(child: SingleChildScrollView(child: ExpandableTextWidget(text: "These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!"),
+                    
+                    ),   
                   ),           
                 ],
               ),
@@ -135,7 +133,7 @@ class PopularFoodDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.mainColor,
               ),
-            )
+            ),
           ]
         ),
       )

@@ -5,8 +5,8 @@ import 'package:flutter_dev/utils/colors.dart';
 import 'package:flutter_dev/widgets/big_text.dart';
 import 'package:flutter_dev/widgets/small_text.dart';
 import 'package:flutter_dev/widgets/icon_and_text_widget.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+
+
 
 
 
@@ -25,6 +25,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
   bool hiddenText=true;
 
   double textHeight = Dimensions.screenHeight/5.63;
+  
   @override
   void initState(){
     super.initState();
@@ -36,9 +37,11 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
       secondHalf="";
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       child: secondHalf.isEmpty?SmallText(color:AppColors.paraColor,size:Dimensions.font16,text: firstHalf):Column(
         children: [
           SmallText(height:1.8,color:AppColors.paraColor,size:Dimensions.font16,text:hiddenText?(firstHalf+"..."):(firstHalf+secondHalf)),

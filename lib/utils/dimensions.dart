@@ -5,6 +5,7 @@ class Dimensions {
 static double screenHeight = Get.context!.height;
 static double screenWidth = Get.context!.width;
 
+
  //calculation height screensize/page used size , 844/320
  //calculation screensize/page used size , 844/220-
  //calculation screensize/page used size , 844/120-
