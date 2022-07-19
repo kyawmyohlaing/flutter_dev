@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/pages/home/main_food_page.dart';
+import 'package:flutter_dev/routes/route_helper.dart';
 import 'package:flutter_dev/utils/dimensions.dart';
 import 'package:flutter_dev/widgets/app_icon.dart';
 import 'package:flutter_dev/utils/colors.dart';
@@ -42,7 +43,7 @@ class PopularFoodDetail extends StatelessWidget {
                     children: [
                       GestureDetector(
                           onTap: () {
-                            Get.to(() => MainFoodPage());
+                            Get.toNamed(RouteHelper.initial);
                           },
                           child: AppIcon(icon: Icons.arrow_back_ios)),
                       AppIcon(icon: Icons.shopping_cart_outlined)
