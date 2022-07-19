@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dev/controllers/popular_product_controller.dart';
 import 'package:flutter_dev/controllers/recommended_product_controller.dart';
 import 'package:flutter_dev/models/products_model.dart';
+import 'package:flutter_dev/pages/food/popular_food_detail.dart';
 import 'package:flutter_dev/utils/colors.dart';
 import 'package:flutter_dev/widgets/big_text.dart';
 import 'package:flutter_dev/widgets/small_text.dart';
@@ -53,14 +54,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ? Container(
                   //color: Colors.redAccent,
                   height: Dimensions.pageView,
-                  child: PageView.builder(
-                      controller: pageController,
-                      itemCount: popularProduct.popularProductList.length,
-                      itemBuilder: (context, position) {
-                        return _buildPageItem(position,
-                            popularProduct.popularProductList[position]);
-                      }),
-                )
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(() => const PopularFoodDetail());
+                    },
+                    child: PageView.builder(
+                        controller: pageController,
+                        itemCount: popularProduct.popularProductList.length,
+                        itemBuilder: (context, position) {
+                          return _buildPageItem(position,
+                              popularProduct.popularProductList[position]);
+                        }),
+                  ))
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
