@@ -1,12 +1,13 @@
 import 'package:flutter_dev/data/api/api_client.dart';
+import 'package:flutter_dev/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class PopularProductRepo extends GetxService {
-  late ApiClient apiClient;
+  final ApiClient apiClient;
 
   PopularProductRepo({required this.apiClient});
 
   Future<Response> getPopularProductList() async {
-    return await apiClient.getData("/api/v1/products/popular");
+    return await apiClient.getData(AppConstants.POPULAR_PRODUCT_URI);
   }
 }
