@@ -55,18 +55,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ? Container(
                   //color: Colors.redAccent,
                   height: Dimensions.pageView,
-                  child: GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getPopularFood());
-                    },
-                    child: PageView.builder(
-                        controller: pageController,
-                        itemCount: popularProduct.popularProductList.length,
-                        itemBuilder: (context, position) {
-                          return _buildPageItem(position,
-                              popularProduct.popularProductList[position]);
-                        }),
-                  ))
+
+                  child: PageView.builder(
+                      controller: pageController,
+                      itemCount: popularProduct.popularProductList.length,
+                      itemBuilder: (context, position) {
+                        return _buildPageItem(position,
+                            popularProduct.popularProductList[position]);
+                      }),
+                )
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
@@ -249,20 +246,25 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         transform: matrix,
         child: Stack(
           children: [
-            Container(
-              height: Dimensions.pageViewContainer,
-              margin: EdgeInsets.only(
-                  left: Dimensions.width10, right: Dimensions.width10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius30),
-                  color: index.isEven ? Color(0xff69c5df) : Color(0xFF9294cc),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(AppConstants.BASE_URL +
-                          AppConstants.UPLOAD_URL +
-                          popularProduct.img!)
-                      //NetworkImage('https://images.unsplash.com/photo-1655312214809-553e851782ae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8eGpQUjRobGtCR0F8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')
-                      )),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(RouteHelper.getPopularFood(index));
+              },
+              child: Container(
+                height: Dimensions.pageViewContainer,
+                margin: EdgeInsets.only(
+                    left: Dimensions.width10, right: Dimensions.width10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius30),
+                    color: index.isEven ? Color(0xff69c5df) : Color(0xFF9294cc),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(AppConstants.BASE_URL +
+                            AppConstants.UPLOAD_URL +
+                            popularProduct.img!)
+                        //NetworkImage('https://images.unsplash.com/photo-1655312214809-553e851782ae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8eGpQUjRobGtCR0F8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')
+                        )),
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
