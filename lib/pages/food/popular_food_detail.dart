@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/controllers/popular_product_controller.dart';
-import 'package:flutter_dev/pages/home/main_food_page.dart';
 import 'package:flutter_dev/routes/route_helper.dart';
+import 'package:flutter_dev/utils/app_constants.dart';
 import 'package:flutter_dev/utils/dimensions.dart';
 import 'package:flutter_dev/widgets/app_icon.dart';
 import 'package:flutter_dev/utils/colors.dart';
 import 'package:flutter_dev/widgets/big_text.dart';
-import 'package:flutter_dev/widgets/small_text.dart';
-import 'package:flutter_dev/widgets/icon_and_text_widget.dart';
 import 'package:flutter_dev/widgets/app_column.dart';
 import 'package:flutter_dev/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  int pageId;
-  PopularFoodDetail({
+  final int pageId;
+  const PopularFoodDetail({
     Key? key,
     required this.pageId,
   }) : super(key: key);
@@ -24,8 +21,8 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    print("page is id " + pageId.toString());
-    print("product name is" + product.name.toString());
+    //print("page is id " + pageId.toString());
+    //print("product name is" + product.name.toString());
     return Scaffold(
         //backgroundColor: Colors.white,
         body: Stack(
@@ -40,7 +37,9 @@ class PopularFoodDetail extends StatelessWidget {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage("assets/image/unsplash1.jpg"))),
+                          image: NetworkImage(AppConstants.BASE_URL +
+                              AppConstants.UPLOAD_URL +
+                              product.img!))),
                 )),
             //icon widgets
             Positioned(
@@ -78,19 +77,17 @@ class PopularFoodDetail extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppColumn(text: "Burmese Side"),
+                    AppColumn(text: product.name!),
                     SizedBox(
-                      height: Dimensions.height10,
+                      height: Dimensions.height20,
                     ),
                     BigText(text: "Introduce"),
                     SizedBox(
-                      height: Dimensions.height10,
+                      height: Dimensions.height20,
                     ),
                     Expanded(
                       child: SingleChildScrollView(
-                        child: ExpandableTextWidget(
-                            text:
-                                "These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!"),
+                        child: ExpandableTextWidget(text: product.description!),
                       ),
                     ),
                   ],
@@ -152,7 +149,9 @@ class PopularFoodDetail extends StatelessWidget {
                 top: Dimensions.width20,
                 bottom: Dimensions.width20,
               ),
-              child: BigText(text: "\$10 | Add to cart", color: Colors.white),
+              child: BigText(
+                  text: "\$ ${product.price!} | Add to cart",
+                  color: Colors.white),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.mainColor,

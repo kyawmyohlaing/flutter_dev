@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/routes/route_helper.dart';
+import 'package:flutter_dev/utils/app_constants.dart';
 import 'package:flutter_dev/utils/dimensions.dart';
 import 'package:flutter_dev/widgets/app_icon.dart';
 import 'package:flutter_dev/utils/colors.dart';
@@ -11,11 +12,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../controllers/recommended_product_controller.dart';
+
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+  const RecommendedFoodDetail({Key? key, required this.pageId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    //print("page is id " + pageId.toString());
+    //print("product name is" + product.name.toString());
     return Scaffold(
         backgroundColor: Colors.white,
         body: CustomScrollView(
@@ -39,7 +48,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Container(
                   child: Center(
                       child: BigText(
-                          size: Dimensions.font26, text: "Burmese Side")),
+                          size: Dimensions.font26, text: product.name!)),
                   width: double.maxFinite,
                   padding: EdgeInsets.only(top: 5, bottom: 10),
                   decoration: BoxDecoration(
@@ -55,8 +64,8 @@ class RecommendedFoodDetail extends StatelessWidget {
               backgroundColor: AppColors.yellowColor,
               expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  "assets/image/unsplash1.jpg",
+                background: Image.network(
+                  AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img,
                   width: double.maxFinite,
                   fit: BoxFit.cover,
                 ),
@@ -66,9 +75,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    child: ExpandableTextWidget(
-                        text:
-                            "These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!These pictures are part of a set of photos that were taken towards the end of the summer to realize one of my projects that was close to my heart: making a calendar for the coming year. Because I like to admire the colour and textures, vegetables are an excellent choice because they can offer a whole show for the eyes all year round!"),
+                    child: ExpandableTextWidget(text: product.description!),
                     margin: EdgeInsets.only(
                       left: Dimensions.width20,
                       right: Dimensions.width20,
@@ -96,7 +103,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     backgroundColor: AppColors.mainColor,
                     icon: Icons.remove),
                 BigText(
-                  text: " \$12.88 " + " X " + " 0 ",
+                  text: " \$ ${product.price!} " + " X " + " 0 ",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
