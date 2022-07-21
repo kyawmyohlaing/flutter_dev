@@ -1,4 +1,6 @@
+import 'package:flutter_dev/controllers/cart_controller.dart';
 import 'package:flutter_dev/controllers/popular_product_controller.dart';
+import 'package:flutter_dev/data/repository/cart_repo.dart';
 import 'package:flutter_dev/data/repository/popular_product_repo.dart';
 import 'package:flutter_dev/data/api/api_client.dart';
 import 'package:flutter_dev/utils/app_constants.dart';
@@ -13,8 +15,10 @@ Future<void> init() async {
   //repos
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
+  Get.lazyPut(() => CartRepo());
   //controllers
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(
       () => RecommendedProductController(recommendedProductRepo: Get.find()));
+  Get.lazyPut(() => CartController(cartRepo: Get.find()));
 }
