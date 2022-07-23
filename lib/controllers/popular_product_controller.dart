@@ -83,14 +83,17 @@ class PopularProductController extends GetxController {
   void addItem(ProductModel product) {
     //if (_quantity > 0) {
     _cart.addItem(product, _quantity);
+
     _quantity = 0;
     _inCartItems = _cart.getQuantity(product);
+
     _cart.items.forEach((key, value) {
       print("The id is " +
           value.id.toString() +
           "The qunatity is" +
           value.quantity.toString());
     });
+    update();
     /*} else {
       Get.snackbar(
         "Item count",
@@ -99,5 +102,9 @@ class PopularProductController extends GetxController {
         colorText: Colors.white,
       );
     }*/
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }
