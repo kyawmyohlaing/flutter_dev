@@ -4,6 +4,7 @@ import 'package:flutter_dev/data/repository/popular_product_repo.dart';
 import 'package:flutter_dev/utils/colors.dart';
 import 'package:get/get.dart';
 
+import '../models/cart_model.dart';
 import '../models/products_model.dart';
 
 class PopularProductController extends GetxController {
@@ -110,5 +111,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
