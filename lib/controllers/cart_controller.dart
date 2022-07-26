@@ -26,6 +26,7 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity,
           isExit: true,
           time: DateTime.now().toString(),
+          product: product,
         );
       });
 
@@ -43,6 +44,7 @@ class CartController extends GetxController {
             quantity: quantity,
             isExit: true,
             time: DateTime.now().toString(),
+            product: product,
           );
         });
       } else {
@@ -54,7 +56,9 @@ class CartController extends GetxController {
         );
       }
     }
+    update();
   }
+
   // print("Length of the item is" + _items.length.toString());
   // _items.forEach((key, value) {
   //   print("quantity is " + value.quantity.toString());
