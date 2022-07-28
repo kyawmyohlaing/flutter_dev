@@ -265,7 +265,7 @@ class CartPage extends StatelessWidget {
                         SizedBox(
                           height: Dimensions.height10,
                         ),
-                        BigText(text: cartController.totalAmount.toString()),
+                        BigText(text: "\$"+cartController.totalAmount.toString()),
                         SizedBox(
                           height: Dimensions.height10,
                         ),

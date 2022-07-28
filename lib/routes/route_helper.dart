@@ -3,6 +3,7 @@ import 'package:flutter_dev/pages/food/popular_food_detail.dart';
 import 'package:get/get.dart';
 
 import '../pages/food/recommended_food_detail.dart';
+import '../pages/home/home_page.dart';
 import '../pages/home/main_food_page.dart';
 
 class RouteHelper {
@@ -19,7 +20,7 @@ class RouteHelper {
   static String getCartPage() => '$cartPage';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => MainFoodPage()),
+    GetPage(name: initial, page: () => HomePage()),
     GetPage(
       name: popularFood,
       page: () {
