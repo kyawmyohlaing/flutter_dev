@@ -1,8 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dev/utils/dimensions.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
 import '../../routes/route_helper.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,9 +20,15 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> animation;
   late AnimationController controller;
 
+  Future<void> _loadResource() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+  }
+
   @override
   void initState() {
     super.initState();
+    _loadResource();
     controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 2))
           ..forward();
@@ -33,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white70,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -42,13 +51,13 @@ class _SplashScreenState extends State<SplashScreen>
               child: Center(
                   child: Image.asset(
                 "assets/image/logo_part_1.png",
-                width: 250,
+                width: Dimensions.splashImg,
               )),
             ),
             Center(
                 child: Image.asset(
               "assets/image/logo_part_2.png",
-              width: 250,
+              width: Dimensions.splashImg,
             )),
           ],
         ));
