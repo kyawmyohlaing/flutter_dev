@@ -265,7 +265,8 @@ class CartPage extends StatelessWidget {
                         SizedBox(
                           height: Dimensions.height10,
                         ),
-                        BigText(text: "\$"+cartController.totalAmount.toString()),
+                        BigText(
+                            text: "\$" + cartController.totalAmount.toString()),
                         SizedBox(
                           height: Dimensions.height10,
                         ),
@@ -275,6 +276,7 @@ class CartPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       //popularProduct.addItem(product);
+                      cartController.addToHistory();
                     },
                     child: Container(
                       padding: EdgeInsets.only(
