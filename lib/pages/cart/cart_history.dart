@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widgets/big_text.dart';
+import 'package:intl/intl.dart';
 
 class CartHistory extends StatefulWidget {
   CartHistory({Key? key}) : super(key: key);
@@ -19,7 +20,8 @@ class CartHistory extends StatefulWidget {
 class _CartHistoryState extends State<CartHistory> {
   @override
   Widget build(BuildContext context) {
-    var getCartHistoryList = Get.find<CartController>().getCartHistoryList();
+    var getCartHistoryList =
+        Get.find<CartController>().getCartHistoryList().reversed.toList();
     Map<String, int> cartItemsPerOrder = Map();
 
     for (int i = 0; i < getCartHistoryList.length; i++) {
@@ -83,10 +85,20 @@ class _CartHistoryState extends State<CartHistory> {
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    BigText(
-                                      text:
-                                          getCartHistoryList[ListCounter].time!,
-                                    ),
+                                    (() {
+                                      DateTime parseDate = DateFormat(
+                                              "yyyy-MM-dd HH:mm:ss")
+                                          .parse(getCartHistoryList[ListCounter]
+                                              .time!);
+                                      var inputDate =
+                                          DateTime.parse(parseDate.toString());
+                                      var outputFormat =
+                                          DateFormat("MM/dd/yyyy hh:mm a");
+                                      var outputDate =
+                                          outputFormat.format(inputDate);
+
+                                      return BigText(text: outputDate);
+                                    }()),
                                     SizedBox(
                                       height: Dimensions.height10,
                                     ),
@@ -130,7 +142,7 @@ class _CartHistoryState extends State<CartHistory> {
                                                   : Container();
                                             })),
                                         Container(
-                                            height: 90,
+                                            height: 80,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
