@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dev/pages/account/account_page.dart';
+import 'package:flutter_dev/pages/auth/sign_up_page.dart';
 import 'package:flutter_dev/pages/cart/cart_history.dart';
 import '../../utils/colors.dart';
 import 'main_food_page.dart';
@@ -17,15 +19,9 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainFoodPage(),
-    Container(
-        child: Center(
-      child: Text("Next page"),
-    )),
+    SignUpPage(),
     CartHistory(),
-    Container(
-        child: Center(
-      child: Text("Next next next page"),
-    )),
+    AccountPage(),
   ];
 
   void onTapNav(int index) {
