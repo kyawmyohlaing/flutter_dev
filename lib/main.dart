@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/controllers/cart_controller.dart';
 import 'package:flutter_dev/controllers/popular_product_controller.dart';
+import 'package:flutter_dev/pages/auth/sign_in_page.dart';
 import 'package:flutter_dev/pages/cart/cart_page.dart';
 import 'package:flutter_dev/pages/home/food_page_body.dart';
 import 'package:flutter_dev/pages/home/main_food_page.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home: SignUpPage(),
+          home: SignInPage(),
           //home: MainFoodPage(),
           //home: SplashScreen(),
           //initialRoute: RouteHelper.getSplashPage(),
