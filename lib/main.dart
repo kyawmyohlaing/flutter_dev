@@ -9,6 +9,7 @@ import 'package:flutter_dev/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dev/pages/food/recommended_food_detail.dart';
 import 'controllers/recommended_product_controller.dart';
+import 'package:flutter_dev/pages/auth/sign_up_page.dart';
 import 'helper/dependencies.dart' as dep;
 
 Future<void> main() async {
@@ -37,10 +38,11 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
+          home: SignUpPage(),
           //home: MainFoodPage(),
           //home: SplashScreen(),
-          initialRoute: RouteHelper.getSplashPage(),
-          getPages: RouteHelper.routes,
+          //initialRoute: RouteHelper.getSplashPage(),
+          //getPages: RouteHelper.routes,
         );
       });
     });
