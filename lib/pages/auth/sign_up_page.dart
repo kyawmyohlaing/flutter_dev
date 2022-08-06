@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dev/base/show_custom_snackbar.dart';
 import 'package:flutter_dev/widgets/app_text_field.dart';
 import 'package:flutter_dev/widgets/big_text.dart';
 import 'package:get/get.dart';
 
+import '../../models/signup_body_model.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
@@ -18,6 +20,35 @@ class SignUpPage extends StatelessWidget {
     var nameController = TextEditingController();
     var phoneController = TextEditingController();
     var signUpImages = ["t.png", "f.png", "g.png"];
+
+    void _registration() {
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
+      String email = emailController.text.trim();
+      String password = passwordController.text.trim();
+
+      if (name.isEmpty) {
+        showCustomSnackBar("Type in your name", title: "Name");
+      } else if (phone.isEmpty) {
+        showCustomSnackBar("Type in your phone number", title: "Phone number");
+      } else if (email.isEmpty) {
+        showCustomSnackBar("Type in your email address",
+            title: "Email address");
+      } else if (!GetUtils.isEmail(email)) {
+        showCustomSnackBar("Type in a valid email address",
+            title: "Valid emaill address");
+      } else if (password.isEmpty) {
+        showCustomSnackBar("Type in your password", title: "password");
+      } else if (password.length < 6) {
+        showCustomSnackBar("Password can not be less than six characters",
+            title: "Password");
+      } else {
+        showCustomSnackBar("All went well", title: "Perfect");
+        SignUpBody signUpBody = SignUpBody(
+            name: name, phone: phone, email: email, password: password);
+        print(signUpBody.toString());
+      }
+    }
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -70,19 +101,25 @@ class SignUpPage extends StatelessWidget {
                 height: Dimensions.height20,
               ),
               //Signup Button
-              Container(
-                  width: Dimensions.screenHeight / 2,
-                  height: Dimensions.screenHeight / 13,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius30),
-                      color: AppColors.mainColor),
-                  child: Center(
-                    child: BigText(
-                      text: "Sign Up",
-                      size: Dimensions.font20 + Dimensions.font20 / 2,
-                      color: Colors.white,
-                    ),
-                  )),
+              GestureDetector(
+                onTap: () {
+                  _registration();
+                },
+                child: Container(
+                    width: Dimensions.screenHeight / 2,
+                    height: Dimensions.screenHeight / 13,
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius30),
+                        color: AppColors.mainColor),
+                    child: Center(
+                      child: BigText(
+                        text: "Sign Up",
+                        size: Dimensions.font20 + Dimensions.font20 / 2,
+                        color: Colors.white,
+                      ),
+                    )),
+              ),
               SizedBox(height: Dimensions.height10),
               //tag link
               RichText(
