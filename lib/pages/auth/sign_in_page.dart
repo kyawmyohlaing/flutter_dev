@@ -77,7 +77,7 @@ class SignInPage extends StatelessWidget {
               ),
               //Signin Button
               Container(
-                  width: Dimensions.screenHeight / 4,
+                  width: Dimensions.screenHeight / 2,
                   height: Dimensions.screenHeight / 13,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius30),
@@ -121,7 +121,7 @@ class SignInPage extends StatelessWidget {
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.to(() => const SignUpPage(),
-                                transaction: Transition.fade),
+                                transition: Transition.fade),
                           text: "Create",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
