@@ -48,7 +48,7 @@ class SignUpPage extends StatelessWidget {
         showCustomSnackBar("All went well", title: "Perfect");
         SignUpBody signUpBody = SignUpBody(
             name: name, phone: phone, email: email, password: password);
-        print(signUpBody.toString());
+        //print(signUpBody.toString());
         authController.registration(signUpBody).then((status) {
           if (status.isSuccess) {
             print("Success registration");
@@ -61,8 +61,8 @@ class SignUpPage extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: Colors.white,
-        body: GetBuilder<AuthController>(builder: (_authController) {
-          return !_authController.isLoading
+        body: GetBuilder<AuthController>(builder: (authController) {
+          return !authController.isLoading
               ? SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Column(
@@ -76,7 +76,7 @@ class SignUpPage extends StatelessWidget {
                           child: Center(
                               child: CircleAvatar(
                             backgroundColor: Colors.white,
-                            radius: 80,
+                            radius: Dimensions.radius20 * 4,
                             backgroundImage:
                                 AssetImage("assets/image/logo_part_1.png"),
                           ))),
@@ -115,7 +115,7 @@ class SignUpPage extends StatelessWidget {
                       //Signup Button
                       GestureDetector(
                         onTap: () {
-                          _registration(_authController);
+                          _registration(authController);
                         },
                         child: Container(
                             width: Dimensions.screenHeight / 2,
