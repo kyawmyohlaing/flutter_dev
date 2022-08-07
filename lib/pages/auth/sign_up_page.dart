@@ -45,7 +45,7 @@ class SignUpPage extends StatelessWidget {
         showCustomSnackBar("Password can not be less than six characters",
             title: "Password");
       } else {
-        showCustomSnackBar("All went well", title: "Perfect");
+        //showCustomSnackBar("All went well", title: "Perfect");
         SignUpBody signUpBody = SignUpBody(
             name: name, phone: phone, email: email, password: password);
         //print(signUpBody.toString());
@@ -61,8 +61,8 @@ class SignUpPage extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: Colors.white,
-        body: GetBuilder<AuthController>(builder: (authController) {
-          return !authController.isLoading
+        body: GetBuilder<AuthController>(builder: (_authController) {
+          return !_authController.isLoading
               ? SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Column(
@@ -115,7 +115,7 @@ class SignUpPage extends StatelessWidget {
                       //Signup Button
                       GestureDetector(
                         onTap: () {
-                          _registration(authController);
+                          _registration(_authController);
                         },
                         child: Container(
                             width: Dimensions.screenHeight / 2,

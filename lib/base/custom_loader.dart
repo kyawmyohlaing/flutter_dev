@@ -21,9 +21,7 @@ class CustomLoader extends StatelessWidget {
           color: AppColors.mainColor,
         ),
         alignment: Alignment.center,
-        child: CircularProgressIndicator(
-          color: Colors.white,
-        ),
+        child: CircularProgressIndicator(color: Colors.white),
       ),
     );
   }
