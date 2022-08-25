@@ -10,8 +10,12 @@ class AppConstants {
   static const String UPLOAD_URL = "/uploads/";
   //auth end points
   static const String REGISTRATION_URI = "/api/v1/auth/register";
+  static const String LOGIN_URI = "/api/v1/auth/login";
+
   static const String CART_LIST = "Cart-List";
   static const String CART_HISTORY_LIST = "Cart-History-List";
 
-  static const String TOKEN = "DBtoken";
+  static const String TOKEN = "";
+  static const String PHONE = "";
+  static const String PASSWORD = "";
 }

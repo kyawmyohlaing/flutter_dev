@@ -39,11 +39,11 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home: SignUpPage(),
+          //home: SignInPage(),
           //home: MainFoodPage(),
           //home: SplashScreen(),
-          //initialRoute: RouteHelper.getSplashPage(),
-          //getPages: RouteHelper.routes,
+          initialRoute: RouteHelper.getSplashPage(),
+          getPages: RouteHelper.routes,
         );
       });
     });

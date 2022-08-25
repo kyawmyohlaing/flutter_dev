@@ -120,7 +120,7 @@ class SignUpPage extends StatelessWidget {
                           _registration(_authController);
                         },
                         child: Container(
-                            width: Dimensions.screenHeight / 2,
+                            width: Dimensions.screenWidth / 2,
                             height: Dimensions.screenHeight / 13,
                             decoration: BoxDecoration(
                                 borderRadius:

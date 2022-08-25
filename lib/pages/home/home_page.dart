@@ -3,6 +3,7 @@ import 'package:flutter_dev/pages/account/account_page.dart';
 import 'package:flutter_dev/pages/auth/sign_up_page.dart';
 import 'package:flutter_dev/pages/cart/cart_history.dart';
 import '../../utils/colors.dart';
+import '../auth/sign_in_page.dart';
 import 'main_food_page.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -19,7 +20,9 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainFoodPage(),
-    SignUpPage(),
+    Container(
+      child: Text("History page"),
+    ),
     CartHistory(),
     AccountPage(),
   ];

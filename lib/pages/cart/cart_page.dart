@@ -7,6 +7,7 @@ import 'package:flutter_dev/utils/app_constants.dart';
 import 'package:flutter_dev/widgets/big_text.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/auth_controller.dart';
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
 import '../../utils/colors.dart';
@@ -316,8 +317,11 @@ class CartPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              //popularProduct.addItem(product);
-                              cartController.addToHistory();
+                              if (Get.find<AuthController>().userLoggedIn()) {
+                                cartController.addToHistory();
+                              } else {
+                                Get.toNamed(RouteHelper.getSignInPage());
+                              }
                             },
                             child: Container(
                               padding: EdgeInsets.only(
