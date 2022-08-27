@@ -51,8 +51,8 @@ class SignInPage extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: Colors.white,
-        body: GetBuilder<AuthController>(builder: (authController) {
-          return !authController.isLoading
+        body: GetBuilder<AuthController>(builder: (_authController) {
+          return !_authController.isLoading
               ? SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Column(
@@ -113,7 +113,7 @@ class SignInPage extends StatelessWidget {
                       //Signin Button
                       GestureDetector(
                         onTap: () {
-                          _login(authController);
+                          _login(_authController);
                         },
                         child: Container(
                             width: Dimensions.screenWidth / 2,

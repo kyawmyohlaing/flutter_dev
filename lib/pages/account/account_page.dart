@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_dev/routes/route_helper.dart';
 import 'package:flutter_dev/utils/dimensions.dart';
 import 'package:flutter_dev/widgets/account_widget.dart';
 import 'package:flutter_dev/widgets/app_icon.dart';
+import 'package:get/get.dart';
 
+import '../../controllers/auth_controller.dart';
+import '../../controllers/cart_controller.dart';
 import '../../utils/colors.dart';
 import '../../widgets/big_text.dart';
 
@@ -50,7 +54,7 @@ class AccountPage extends StatelessWidget {
                           size: Dimensions.height10 * 5,
                         ),
                         bigText: BigText(
-                          text: "NwayOo",
+                          text: "nway oo",
                         )),
                     SizedBox(
                       height: Dimensions.height20,
@@ -74,9 +78,9 @@ class AccountPage extends StatelessWidget {
                     AccountWidget(
                         appIcon: AppIcon(
                           icon: Icons.email,
-                          backgroundColor: AppColors.mainColor,
+                          backgroundColor: AppColors.yellowColor,
                           iconSize: Dimensions.height10 * 5 / 2,
-                          iconColor: Colors.yellow,
+                          iconColor: Colors.white,
                           size: Dimensions.height10 * 5,
                         ),
                         bigText: BigText(
@@ -89,9 +93,9 @@ class AccountPage extends StatelessWidget {
                     AccountWidget(
                         appIcon: AppIcon(
                           icon: Icons.location_on,
-                          backgroundColor: AppColors.mainColor,
+                          backgroundColor: AppColors.yellowColor,
                           iconSize: Dimensions.height10 * 5 / 2,
-                          iconColor: Colors.yellow,
+                          iconColor: Colors.white,
                           size: Dimensions.height10 * 5,
                         ),
                         bigText: BigText(
@@ -104,17 +108,41 @@ class AccountPage extends StatelessWidget {
                     AccountWidget(
                         appIcon: AppIcon(
                           icon: Icons.message,
-                          backgroundColor: AppColors.mainColor,
+                          backgroundColor: Colors.redAccent,
                           iconSize: Dimensions.height10 * 5 / 2,
-                          iconColor: Colors.red,
+                          iconColor: Colors.white,
                           size: Dimensions.height10 * 5,
                         ),
                         bigText: BigText(
-                          text: "Place your location point",
+                          text: "Messages",
                         )),
                     SizedBox(
                       height: Dimensions.height20,
                     ),
+                    //name
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getSignInPage());
+                        } else {
+                          print("you logged out");
+                        }
+                      },
+                      child: AccountWidget(
+                          appIcon: AppIcon(
+                            icon: Icons.logout,
+                            backgroundColor: Colors.redAccent,
+                            iconSize: Dimensions.height10 * 5 / 2,
+                            iconColor: Colors.white,
+                            size: Dimensions.height10 * 5,
+                          ),
+                          bigText: BigText(
+                            text: "Logout",
+                          )),
+                    )
                   ],
                 )),
               ),

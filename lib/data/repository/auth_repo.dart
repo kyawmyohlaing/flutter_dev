@@ -1,9 +1,10 @@
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:flutter_dev/models/signup_body_model.dart';
 import 'package:flutter_dev/utils/app_constants.dart';
-import 'package:get/get.dart';
 
 import '../api/api_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
   final ApiClient apiClient;
@@ -42,7 +43,16 @@ class AuthRepo {
       await sharedPreferences.setString(AppConstants.PHONE, number);
       await sharedPreferences.setString(AppConstants.PASSWORD, password);
     } catch (e) {
-      rethrow;
+      throw e;
     }
+  }
+
+  bool clearSharedData() {
+    sharedPreferences.remove(AppConstants.TOKEN);
+    sharedPreferences.remove(AppConstants.PASSWORD);
+    sharedPreferences.remove(AppConstants.PHONE);
+    apiClient.token = '';
+    apiClient.updateHeader('');
+    return true;
   }
 }
