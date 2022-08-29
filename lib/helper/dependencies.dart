@@ -1,5 +1,7 @@
 import 'package:flutter_dev/controllers/auth_controller.dart';
+import 'package:flutter_dev/controllers/location_controller.dart';
 import 'package:flutter_dev/data/repository/auth_repo.dart';
+import 'package:flutter_dev/data/repository/location_repo.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dev/controllers/cart_controller.dart';
@@ -19,8 +21,7 @@ Future<void> init() async {
 
   Get.lazyPut(() => sharedPreferences);
   //api client
-  Get.lazyPut(() => ApiClient(
-      appBaseUrl: AppConstants.BASE_URL));
+  Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
   Get.lazyPut(
       () => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => UserRepo(apiClient: Get.find()));
@@ -29,6 +30,8 @@ Future<void> init() async {
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
+  Get.lazyPut(
+      () => LocationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   //controllers
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
@@ -37,4 +40,5 @@ Future<void> init() async {
       () => RecommendedProductController(recommendedProductRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
   Get.lazyPut(() => UserController(userRepo: Get.find()));
+  Get.lazyPut(() => LocationController(locationRepo: Get.find()));
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/base/no_data_page.dart';
 import 'package:flutter_dev/controllers/cart_controller.dart';
+import 'package:flutter_dev/controllers/location_controller.dart';
 import 'package:flutter_dev/pages/home/main_food_page.dart';
 import 'package:flutter_dev/routes/route_helper.dart';
 import 'package:flutter_dev/utils/app_constants.dart';
@@ -318,7 +319,12 @@ class CartPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               if (Get.find<AuthController>().userLoggedIn()) {
-                                cartController.addToHistory();
+                                //cartController.addToHistory();
+                                if (Get.find<LocationController>()
+                                    .addressList
+                                    .isEmpty) {
+                                  Get.toNamed(RouteHelper.getAddressPage());
+                                }
                               } else {
                                 Get.toNamed(RouteHelper.getSignInPage());
                               }
