@@ -46,29 +46,48 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Address Page"),
-        backgroundColor: AppColors.mainColor,
-      ),
-      body: Column(
-        children: [
-          Container(
-              height: 140,
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 5, right: 5, top: 5),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                      width: 2, color: Theme.of(context).primaryColor)),
-              child: Stack(
-                children: [
-                  GoogleMap(
-                      initialCameraPosition:
-                          CameraPosition(target: _intitialPosition, zoom: 17))
-                ],
-              ))
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Address Page"),
+          backgroundColor: AppColors.mainColor,
+        ),
+        body: GetBuilder<LocationController>(builder: (locationController) {
+          _addressController.text = '${locationController.placemark.name ?? ''}'
+              '${locationController.placemark.locality ?? ''}'
+              '${locationController.placemark.postalCode ?? ''}'
+              '${locationController.placemark.country ?? ''}';
+          print("address in my view is" + _addressController.text);
+          return Column(
+            children: [
+              Container(
+                  height: 140,
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.only(left: 5, right: 5, top: 5),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                          width: 2, color: Theme.of(context).primaryColor)),
+                  child: Stack(
+                    children: [
+                      GoogleMap(
+                          initialCameraPosition: CameraPosition(
+                              target: _intitialPosition, zoom: 17),
+                          zoomControlsEnabled: false,
+                          compassEnabled: false,
+                          indoorViewEnabled: true,
+                          mapToolbarEnabled: false,
+                          onCameraIdle: () {
+                            locationController.updatePosition(
+                                _cameraPosition, true);
+                          },
+                          onCameraMove: ((position) =>
+                              _cameraPosition = position),
+                          onMapCreated: (GoogleMapController controller) {
+                            locationController.setMapController(controller);
+                          })
+                    ],
+                  ))
+            ],
+          );
+        }));
   }
 }
