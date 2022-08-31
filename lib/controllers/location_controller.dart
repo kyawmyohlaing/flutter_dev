@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_dev/models/address_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -21,8 +23,6 @@ class LocationController extends GetxController implements GetxService {
   late List<AddressModel> _allAddressList;
   List<String> _addressTypeList = ["home", "office", "others"];
   int _addressTypeIndex = 0;
-  late Map<String, dynamic> _getAddress;
-  Map get getAddress => _getAddress;
 
   late GoogleMapController _mapController;
   bool _updateAddressData = true;
@@ -88,5 +88,21 @@ class LocationController extends GetxController implements GetxService {
       print("Error getting the google api");
     }
     return _address;
+  }
+
+  late Map<String, dynamic> _getAddress;
+  Map get getAddress => _getAddress;
+
+  AddressModel getUserAddress() {
+    late AddressModel _addressModel;
+    /*converting to map using jsonDecode*/
+    _getAddress = jsonDecode(locationRepo.getUserAddress());
+    try {
+      _addressModel =
+          AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
+    } catch (e) {
+      print(e);
+    }
+    return _addressModel;
   }
 }

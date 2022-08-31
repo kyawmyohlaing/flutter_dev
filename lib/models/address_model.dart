@@ -33,9 +33,9 @@ class AddressModel {
 
   AddressModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
-    _addressType = json['addressType'];
-    _contactPersonName = json['contactPersonName'];
-    _contactPersonNumber = json['contactPersonNumber'];
+    _addressType = json['addressType'] ?? "";
+    _contactPersonName = json['contact_Person_Name'] ?? "";
+    _contactPersonNumber = json['contact_Person_Number'] ?? "";
     _address = json['address'];
     _latitude = json['latitude'];
     _longitude = json['longitude'];
