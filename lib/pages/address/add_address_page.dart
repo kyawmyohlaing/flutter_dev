@@ -24,13 +24,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
   late bool _isLogged;
   CameraPosition _cameraPosition =
       const CameraPosition(target: LatLng(45.51563, -122.677433), zoom: 17);
-  late LatLng _intitialPosition = const LatLng(45.51563, -122.677433);
+  late LatLng _intitialPosition = LatLng(45.51563, -122.677433);
 
   @override
   void initState() {
     super.initState();
     _isLogged = Get.find<AuthController>().userLoggedIn();
-    // ignore: unnecessary_null_comparison
+
     if (_isLogged && Get.find<UserController>().userModel == null) {
       Get.find<UserController>().getUserInfo();
     }
@@ -57,8 +57,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
         body: GetBuilder<UserController>(builder: (userController) {
           if (userController.userModel != null &&
               _contactPersonName.text.isEmpty) {
-            _contactPersonName.text = '${userController.userModel?.name}';
-            _contactPersonNumber.text = '${userController.userModel?.phone}';
+            //_contactPersonName.text = '${userController.userModel?.name}';
+            //_contactPersonNumber.text = '${userController.userModel?.phone}';
+            _contactPersonName.text = userController.userModel.name;
+            _contactPersonNumber.text = userController.userModel.phone;
             if (Get.find<LocationController>().addressList.isNotEmpty) {
               _addressController.text =
                   Get.find<LocationController>().getUserAddress().address;
@@ -102,6 +104,55 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             })
                       ],
                     )),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: Dimensions.width20, top: Dimensions.height20),
+                  child: SizedBox(
+                      height: 50,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: locationController.addressTypeList.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                locationController.setAddressTypeIndex(index);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: Dimensions.width20,
+                                    vertical: Dimensions.height10),
+                                margin:
+                                    EdgeInsets.only(right: Dimensions.width10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius20 / 4),
+                                    color: Theme.of(context).cardColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[200]!,
+                                          spreadRadius: 1,
+                                          blurRadius: 5)
+                                    ]),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                        index == 0
+                                            ? Icons.home_filled
+                                            : index == 1
+                                                ? Icons.work
+                                                : Icons.location_on,
+                                        color: locationController
+                                                    .addresTypeIndex ==
+                                                index
+                                            ? AppColors.mainColor
+                                            : Theme.of(context).disabledColor)
+                                  ],
+                                ),
+                              ),
+                            );
+                          })),
+                ),
                 SizedBox(
                   height: Dimensions.height20,
                 ),

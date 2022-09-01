@@ -21,8 +21,10 @@ class LocationController extends GetxController implements GetxService {
   List<AddressModel> _addressList = [];
   List<AddressModel> get addressList => _addressList;
   late List<AddressModel> _allAddressList;
-  List<String> _addressTypeList = ["home", "office", "others"];
+  final List<String> _addressTypeList = ["home", "office", "others"];
+  List<String> get addressTypeList => _addressTypeList;
   int _addressTypeIndex = 0;
+  int get addresTypeIndex => _addressTypeIndex;
 
   late GoogleMapController _mapController;
   bool _updateAddressData = true;
@@ -104,5 +106,10 @@ class LocationController extends GetxController implements GetxService {
       print(e);
     }
     return _addressModel;
+  }
+
+  void setAddressTypeIndex(int index) {
+    _addressTypeIndex = index;
+    update();
   }
 }
