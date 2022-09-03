@@ -93,6 +93,7 @@ class LocationController extends GetxController implements GetxService {
     } else {
       print("Error getting the google api");
     }
+    update();
     return _address;
   }
 
@@ -124,7 +125,7 @@ class LocationController extends GetxController implements GetxService {
     ResponseModel responseModel;
     if (response.statusCode == 200) {
       await getAddressList();
-      String message = response.body("message");
+      String message = response.body["message"];
       responseModel = ResponseModel(true, message);
       await saveUserAddress(addressModel);
     } else {

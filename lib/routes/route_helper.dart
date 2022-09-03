@@ -35,7 +35,7 @@ class RouteHelper {
         name: initial,
         page: () {
           return HomePage();
-        }),
+        }, transition: Transition.fade),
     GetPage(
         name: signIn,
         page: () {
@@ -73,3 +73,4 @@ class RouteHelper {
         })
   ];
 }
+  

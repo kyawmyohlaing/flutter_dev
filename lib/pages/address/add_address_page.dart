@@ -37,14 +37,15 @@ class _AddAddressPageState extends State<AddAddressPage> {
       Get.find<UserController>().getUserInfo();
     }
     if (Get.find<LocationController>().addressList.isNotEmpty) {
+      Get.find<LocationController>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
         double.parse(Get.find<LocationController>().getAddress["latitude"]),
-        double.parse(Get.find<LocationController>().getAddress["langitude"]),
+        double.parse(Get.find<LocationController>().getAddress["longitude"]),
       ));
       _intitialPosition = LatLng(
         double.parse(Get.find<LocationController>().getAddress["latitude"]),
-        double.parse(Get.find<LocationController>().getAddress["langitude"]),
+        double.parse(Get.find<LocationController>().getAddress["longitude"]),
       );
     }
   }

@@ -47,6 +47,7 @@ class AddressModel {
     data['address_type'] = this._addressType;
     data['contact_person_number'] = this._contactPersonName;
     data['contact_person_name'] = this._contactPersonNumber;
+    data['address'] = this._address;
     data['logitube'] = this._longitude;
     data['latitude'] = this._latitude;
     return data;
