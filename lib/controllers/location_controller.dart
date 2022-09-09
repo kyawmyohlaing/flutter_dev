@@ -145,6 +145,7 @@ class LocationController extends GetxController implements GetxService {
         _addressList.add(AddressModel.fromJson(address));
         _allAddressList.add(AddressModel.fromJson(address));
       });
+      print("......added......." + _addressList.toString());
     } else {
       _addressList = [];
       _allAddressList = [];
@@ -155,5 +156,11 @@ class LocationController extends GetxController implements GetxService {
   Future<bool> saveUserAddress(AddressModel addressModel) async {
     String userAddress = jsonEncode(addressModel.toJson());
     return await locationRepo.saveUserAddress(userAddress);
+  }
+
+  void clearAddressList(){
+    _addressList=[];
+    _allAddressList=[];
+    update();
   }
 }

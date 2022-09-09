@@ -170,9 +170,12 @@ class AccountPage extends StatelessWidget {
                                     Get.find<CartController>().clear();
                                     Get.find<CartController>()
                                         .clearCartHistory();
+                                    Get.find<LocationController>()
+                                        .clearAddressList();
                                     Get.offNamed(RouteHelper.getSignInPage());
                                   } else {
-                                    print("you logged out");
+                                    //print("you logged out");
+                                    Get.offNamed(RouteHelper.getSignInPage());
                                   }
                                 },
                                 child: AccountWidget(

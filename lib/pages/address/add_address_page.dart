@@ -7,6 +7,7 @@ import 'package:flutter_dev/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 import '../../widgets/app_icon.dart';
 import '../../widgets/app_text_field.dart';
@@ -231,7 +232,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           locationController.position.longitude.toString());
                   locationController.addAddress(_addressModel).then((response) {
                     if (response.isSuccess) {
-                      Get.back();
+                      Get.toNamed(RouteHelper.getInitial());
                       Get.snackbar("Address", "Added Successfully");
                     } else {
                       Get.snackbar("Address", "Couldn't save address");
