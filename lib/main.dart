@@ -7,6 +7,7 @@ import 'package:flutter_dev/pages/home/food_page_body.dart';
 import 'package:flutter_dev/pages/home/main_food_page.dart';
 import 'package:flutter_dev/pages/splash/splash_page.dart';
 import 'package:flutter_dev/routes/route_helper.dart';
+import 'package:flutter_dev/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dev/pages/food/recommended_food_detail.dart';
 import 'controllers/recommended_product_controller.dart';
@@ -44,6 +45,10 @@ class MyApp extends StatelessWidget {
           //home: SplashScreen(),
           initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
+          theme: ThemeData(
+            primaryColor: AppColors.mainColor,
+            fontFamily: "Lato",
+          ),
         );
       });
     });

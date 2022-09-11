@@ -3,6 +3,7 @@ import 'package:flutter_dev/controllers/auth_controller.dart';
 import 'package:flutter_dev/controllers/location_controller.dart';
 import 'package:flutter_dev/controllers/user_controller.dart';
 import 'package:flutter_dev/models/address_model.dart';
+import 'package:flutter_dev/pages/address/pick_address_map.dart';
 import 'package:flutter_dev/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -38,6 +39,11 @@ class _AddAddressPageState extends State<AddAddressPage> {
       Get.find<UserController>().getUserInfo();
     }
     if (Get.find<LocationController>().addressList.isNotEmpty) {
+      if (Get.find<LocationController>().getUserAddressFromLocalStorage() ==
+          "") {
+        Get.find<LocationController>()
+            .saveUserAddress(Get.find<LocationController>().addressList.last);
+      }
       Get.find<LocationController>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
@@ -93,6 +99,15 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         GoogleMap(
                             initialCameraPosition: CameraPosition(
                                 target: _intitialPosition, zoom: 17),
+                            onTap: (LatLng) {
+                              Get.toNamed(RouteHelper.getPickAddressPage(),
+                                  arguments: PickAddressMap(
+                                    fromSignup: false,
+                                    fromAddress: true,
+                                    googleMapController:
+                                        locationController.mapController,
+                                  ));
+                            },
                             zoomControlsEnabled: false,
                             compassEnabled: false,
                             indoorViewEnabled: true,
