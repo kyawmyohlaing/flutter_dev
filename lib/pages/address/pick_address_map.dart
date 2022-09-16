@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/base/custom_button.dart';
 import 'package:flutter_dev/controllers/location_controller.dart';
+import 'package:flutter_dev/pages/address/widgets/search_location_dialogue_page.dart';
 import 'package:flutter_dev/routes/route_helper.dart';
 import 'package:flutter_dev/utils/colors.dart';
 
@@ -68,6 +69,10 @@ class _PickAddressMapState extends State<PickAddressMap> {
                   Get.find<LocationController>()
                       .updatePosition(_cameraPosition, false);
                 },
+                onMapCreated: (GoogleMapController mapController) {
+                  _mapController = mapController;
+                  if (!widget.fromAddress) {}
+                },
               ),
               Center(
                   child: !locationController.loading
@@ -77,33 +82,46 @@ class _PickAddressMapState extends State<PickAddressMap> {
                           width: 50,
                         )
                       : CircularProgressIndicator()),
+              /* 
+                      showing and selecting address
+                      */
               Positioned(
                 top: Dimensions.height20,
                 left: Dimensions.width20,
                 right: Dimensions.width20,
-                child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: Dimensions.width10),
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: AppColors.mainColor,
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.radius20 / 2),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.location_on,
-                            size: 25, color: AppColors.yellowColor),
-                        Expanded(
-                            child: Text(
-                          '${locationController.pickPlacemark.name ?? ''}',
-                          style: TextStyle(
-                              color: Colors.white, fontSize: Dimensions.font16),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ))
-                      ],
-                    )),
+                child: InkWell(
+                  onTap: () => Get.dialog(
+                      LocationDialogue(mapController: _mapController)),
+                  child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: Dimensions.width10),
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: AppColors.mainColor,
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius20 / 2),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.location_on,
+                              size: 25, color: AppColors.yellowColor),
+                          Expanded(
+                              child: Text(
+                            '${locationController.pickPlacemark.name ?? ''}',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Dimensions.font16),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          )),
+                          SizedBox(
+                            width: Dimensions.width10,
+                          ),
+                          Icon(Icons.search,
+                              size: 25, color: AppColors.yellowColor)
+                        ],
+                      )),
+                ),
               ),
               Positioned(
                   bottom: 80,
