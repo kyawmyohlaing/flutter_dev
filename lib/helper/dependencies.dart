@@ -11,8 +11,10 @@ import 'package:flutter_dev/data/repository/cart_repo.dart';
 import 'package:flutter_dev/data/repository/popular_product_repo.dart';
 import 'package:flutter_dev/utils/app_constants.dart';
 
+import '../controllers/order_controller.dart';
 import '../controllers/recommended_product_controller.dart';
 import '../controllers/user_controller.dart';
+import '../data/repository/order_repo.dart';
 import '../data/repository/recommended_product_repo.dart';
 import '../data/repository/user_repo.dart';
 
@@ -32,6 +34,7 @@ Future<void> init() async {
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
   Get.lazyPut(
       () => LocationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+  Get.lazyPut(() => OrderRepo(apiClient: Get.find()));
 
   //controllers
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
@@ -41,4 +44,5 @@ Future<void> init() async {
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
   Get.lazyPut(() => UserController(userRepo: Get.find()));
   Get.lazyPut(() => LocationController(locationRepo: Get.find()));
+  Get.lazyPut(() => OrderController(orderRepo: Get.find()));
 }
