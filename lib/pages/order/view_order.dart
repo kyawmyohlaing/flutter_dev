@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/controllers/order_controller.dart';
+import 'package:flutter_dev/utils/styles.dart';
 import 'package:get/get.dart';
 
 import '../../models/order_model.dart';
@@ -37,8 +38,15 @@ class ViewOrder extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("#order ID     " +
-                              orderList[index].id.toString()),
+                          Row(
+                            children: [
+                              Text("#order ID     ",
+                                  style: robotRegular.copyWith(
+                                      fontSize: Dimensions.font12)),
+                              SizedBox(width: Dimensions.width10 / 2),
+                              Text('#{orderList[index].id.toString()}')
+                            ],
+                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -47,13 +55,15 @@ class ViewOrder extends StatelessWidget {
                                       color: AppColors.mainColor,
                                       borderRadius: BorderRadius.circular(
                                           Dimensions.radius20 / 4)),
-                                  child: Container(
-                                      margin: EdgeInsets.all(
-                                          Dimensions.height10 / 2),
-                                      child: Text(
-                                        '${orderList[index].orderStatus}',
-                                        style: TextStyle(color: Colors.white),
-                                      ))),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: Dimensions.width10,
+                                      vertical: Dimensions.width10 / 2),
+                                  child: Text(
+                                    '${orderList[index].orderStatus}',
+                                    style: robotMedium.copyWith(
+                                        fontSize: Dimensions.font12,
+                                        color: Theme.of(context).cardColor),
+                                  )),
                               SizedBox(
                                 height: Dimensions.height10 / 2,
                               ),
@@ -62,14 +72,38 @@ class ViewOrder extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: Dimensions.width10 / 2,
+                                            vertical: Dimensions.width10 / 2),
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(
-                                                Dimensions.radius20 / 4)),
-                                        child: Container(
-                                          margin: EdgeInsets.all(
-                                              Dimensions.height10 / 2),
-                                          child: Text("Track Order"),
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius20 / 4),
+                                          border: Border.all(
+                                            width: 1,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                              "assets/image/tracking.png",
+                                              width: 15,
+                                              height: 15,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
+                                            SizedBox(
+                                                width: Dimensions.width10 / 2),
+                                            Text(
+                                              "track order",
+                                              style: robotMedium.copyWith(
+                                                  fontSize: Dimensions.font12,
+                                                  color: Theme.of(context)
+                                                      .primaryColor),
+                                            )
+                                          ],
                                         ),
                                       ),
                                       SizedBox(

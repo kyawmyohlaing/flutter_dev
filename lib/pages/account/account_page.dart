@@ -6,6 +6,7 @@ import 'package:flutter_dev/widgets/account_widget.dart';
 import 'package:flutter_dev/widgets/app_icon.dart';
 import 'package:get/get.dart';
 
+import '../../base/custom_app_bar.dart';
 import '../../base/custom_loader.dart';
 import '../../controllers/auth_controller.dart';
 import '../../controllers/cart_controller.dart';
@@ -25,14 +26,7 @@ class AccountPage extends StatelessWidget {
       print("User logged in");
     }
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.mainColor,
-          title: BigText(
-            text: "Profile",
-            size: 24,
-            color: Colors.white,
-          ),
-        ),
+        appBar: CustomAppBar(title: "Profile"),
         body: GetBuilder<UserController>(builder: (userController) {
           return _userLoggedIn
               ? (userController.isLoading
