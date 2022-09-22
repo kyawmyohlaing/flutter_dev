@@ -5,6 +5,7 @@ import 'package:flutter_dev/pages/order/view_order.dart';
 import 'package:flutter_dev/utils/colors.dart';
 import 'package:get/get.dart';
 
+import '../../base/custom_app_bar.dart';
 import '../../utils/dimensions.dart';
 
 class OrderPage extends StatefulWidget {
@@ -31,10 +32,7 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("My orders"),
-          backgroundColor: AppColors.mainColor,
-        ),
+        appBar: CustomAppBar(title: "My orders"),
         body: Column(
           children: [
             Container(

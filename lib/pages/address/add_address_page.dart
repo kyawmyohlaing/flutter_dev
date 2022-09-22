@@ -8,6 +8,7 @@ import 'package:flutter_dev/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../base/custom_app_bar.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 import '../../widgets/app_icon.dart';
@@ -60,10 +61,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Address Page"),
-        backgroundColor: AppColors.mainColor,
-      ),
+      appBar: CustomAppBar(title: "Address"),
       body: GetBuilder<UserController>(builder: (userController) {
         if (userController.userModel != null &&
             _contactPersonName.text.isEmpty) {

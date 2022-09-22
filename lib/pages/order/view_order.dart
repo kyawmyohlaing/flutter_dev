@@ -3,6 +3,7 @@ import 'package:flutter_dev/controllers/order_controller.dart';
 import 'package:flutter_dev/utils/styles.dart';
 import 'package:get/get.dart';
 
+import '../../base/custom_loader.dart';
 import '../../models/order_model.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
@@ -121,7 +122,7 @@ class ViewOrder extends StatelessWidget {
               ),
             ));
       } else {
-        return Text("loading");
+        return CustomLoader();
       }
     }));
   }
