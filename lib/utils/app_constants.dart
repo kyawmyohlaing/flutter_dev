@@ -34,4 +34,6 @@ class AppConstants {
   static const String PASSWORD = "";
   static const String CART_LIST = "Cart-List";
   static const String CART_HISTORY_LIST = "Cart-History-List";
+
+  static const String TOKEN_URI = "/api/v1/customer/cm-firebase-token";
 }

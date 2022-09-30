@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dev/utils/dimensions.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/auth_controller.dart';
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
 import '../../routes/route_helper.dart';
@@ -28,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+    Get.find<AuthController>().updateToken();
     _loadResource();
     controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 2))

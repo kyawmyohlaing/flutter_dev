@@ -459,6 +459,7 @@ class CartPage extends StatelessWidget {
                                   onTap: () {
                                     if (Get.find<AuthController>()
                                         .userLoggedIn()) {
+                                          Get.find<AuthController>().updateToken();
                                       //cartController.addToHistory();
                                       if (Get.find<LocationController>()
                                           .addressList
